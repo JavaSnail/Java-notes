@@ -2,17 +2,18 @@
 
 [TOC]
 
+
 ## Struts2拦截器概述
 
 1. struts2是框架，封装了很多的功能，Struts2里面封装的功能都是在拦截器里面。
 2. Struts2里面封装了很多的功能，有很多拦截器，不是每次这些拦截器都执行，每次执行默认拦截器
 3. Struts2里面默认拦截器的位置
 
-![1554212489504](F:\Learning-notes\Struts2_day04.assets\F%5CLearning-notes%5CStruts2_day04.assets%5C1554212489504.png)
+![1554212489504](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/1554212489504.png)
 
-![1554212533695](F:\Learning-notes\Struts2_day04.assets\F%5CLearning-notes%5CStruts2_day04.assets%5C1554212533695.png)
+![1554212533695](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/1554212533695.png)
 
-![1554212696021](F:\Learning-notes\Struts2_day04.assets\F%5CLearning-notes%5CStruts2_day04.assets%5C1554212696021.png)
+![1554212696021](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/1554212696021.png)
 
 4. 拦截器在什么时候执行？
    - 在action对象创建之后，action方法执行之前。
@@ -29,7 +30,7 @@
 
    - 画图分析
 
-   ![1554214661060](F:\Learning-notes\Struts2_day04.assets\Aop思想.png)
+   ![1554214661060](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/Aop%E6%80%9D%E6%83%B3.png)
 
    第二个 责任链模式
 
@@ -46,7 +47,7 @@
 
    ​	一个请求可以有多个过滤器进行过滤，每个过滤器只有做放行才能到下一个过滤器。
 
-   ![1554215203465](F:\Learning-notes\Struts2_day04.assets\1554215203465.png)
+   ![1554215203465](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/1554215203465.png)
 
 2. aop思想和责任链模式是如何应用到拦截器里面？
 
@@ -62,31 +63,31 @@
 
    - 画图分析
 
-   ![](F:\Learning-notes\Struts2_day04.assets\拦截器的执行过程.png)
+   ![](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/%E6%8B%A6%E6%88%AA%E5%99%A8%E7%9A%84%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B.png)
 
 3. 查看源代码
 
    - 执行action
 
-     ![](F:\Learning-notes\Struts2_day04.assets\1554219043772.png)
+     ![](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/1554219043772.png)
 
    - 创建action对象，使用动态代理的方式
 
-     ![1554219401005](F:\Learning-notes\Struts2_day04.assets\1554219401005.png)
+     ![1554219401005](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/1554219401005.png)
 
      > 代理对象：不是真正的对象，但可以和对象所能执行的相同功能。
 
    - 执行action的方法
 
-     ![1554219591228](F:\Learning-notes\Struts2_day04.assets\1554219591228.png)
+     ![1554219591228](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/1554219591228.png)
 
    - 执行多个拦截器，遍历执行
 
-     ![1554220271875](F:\Learning-notes\Struts2_day04.assets\1554220271875.png)
+     ![1554220271875](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/1554220271875.png)
 
      类似放行的操作
 
-     ![1554220380515](F:\Learning-notes\Struts2_day04.assets\1554220380515.png)
+     ![1554220380515](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/1554220380515.png)
 
 ## 重要概念
 
