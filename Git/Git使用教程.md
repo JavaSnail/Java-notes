@@ -18,7 +18,7 @@
 
 ## Git工作流
 
-![](F:\Markdown\Git\images\QQ图片20190331185409.png)
+![](https://github.com/xuxueli982/Learning-notes/blob/master/Git/images/QQ%E5%9B%BE%E7%89%8720190331185409.png)
 
 第一天产品经理需求完成bash_demo
 
@@ -26,49 +26,49 @@
 
   > 查看当前状态
 
-![](F:\Markdown\Git\images\QQ截图20190331175440.png)
+![](https://github.com/xuxueli982/Learning-notes/blob/master/Git/images/QQ%E6%88%AA%E5%9B%BE20190331175440.png)
 
 - git add bash_deom.txt
 
   > 将文件添加到暂存区中
 
-![](F:\Markdown\Git\images\QQ截图20190331175948.png)
+![](https://github.com/xuxueli982/Learning-notes/blob/master/Git/images/QQ%E6%88%AA%E5%9B%BE20190331175948.png)
 
 - git commit -m "first commit "
 
   > 将暂存中的文件存到本地仓库
 
-![](F:\Markdown\Git\images\QQ截图20190331182156.png)
+![](https://github.com/xuxueli982/Learning-notes/blob/master/Git/images/QQ%E6%88%AA%E5%9B%BE20190331182156.png)
 
 产品经理临时变更需求
 
-![](F:\Markdown\Git\images\QQ截图20190331182438.png)
+![](https://github.com/xuxueli982/Learning-notes/blob/master/Git/images/QQ%E6%88%AA%E5%9B%BE20190331182438.png)
 
 - git add bash_demo.txt
 
 > 将修改提交到暂存区
 
-![](F:\Markdown\Git\images\QQ截图20190331182705.png)
+![](https://github.com/xuxueli982/Learning-notes/blob/master/Git/images/QQ%E6%88%AA%E5%9B%BE20190331182705.png)
 
 需求不需要改了，将暂存中的文件回滚到工作区
 
 - git reset HEAD bash_demo.txt
 
-![](F:\Markdown\Git\images\QQ截图20190331183141.png)
+![](https://github.com/xuxueli982/Learning-notes/blob/master/Git/images/QQ%E6%88%AA%E5%9B%BE20190331183141.png)
 
 清空工作区
 
 - git checkout -- bash_demo.txt
 
-![](F:\Markdown\Git\images\QQ截图20190331183419.png)
+![](https://github.com/xuxueli982/Learning-notes/blob/master/Git/images/QQ%E6%88%AA%E5%9B%BE20190331183419.png)
 
 第二天程序开发
 
-![](F:\Markdown\Git\images\QQ截图20190331183610.png)
+![](https://github.com/xuxueli982/Learning-notes/blob/master/Git/images/QQ%E6%88%AA%E5%9B%BE20190331183610.png)
 
 第二天需求提交
 
-![](F:\Markdown\Git\images\QQ截图20190331183755.png)
+![](https://github.com/xuxueli982/Learning-notes/blob/master/Git/images/QQ%E6%88%AA%E5%9B%BE20190331183755.png)
 
 产品经理说第二次需求不用做回滚到第一次
 
@@ -78,19 +78,19 @@
 
 - git reset --hard 8a3bd98f254eb0302a68051bc4bab2c3585958a5
 
-![](F:\Markdown\Git\images\QQ截图20190331184310.png)
+![](https://github.com/xuxueli982/Learning-notes/blob/master/Git/images/QQ%E6%88%AA%E5%9B%BE20190331184310.png)
 
 不需要做项目了，清除干净本地仓库
 
 - git rm bash_demo.txt
 
-![](F:\Markdown\Git\images\QQ截图20190331184723.png)
+![](https://github.com/xuxueli982/Learning-notes/blob/master/Git/images/QQ%E6%88%AA%E5%9B%BE20190331184723.png)
 
 > 本地清空了这时，但是暂存区和仓库还没有清空
 
 - git commit -m "delete bash_demo"
 
-![](F:\Markdown\Git\images\QQ截图20190331185050.png)
+![](https://github.com/xuxueli982/Learning-notes/blob/master/Git/images/QQ%E6%88%AA%E5%9B%BE20190331185050.png)
 
 Git 工作流
 
