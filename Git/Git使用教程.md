@@ -18,7 +18,7 @@
 
 ## Git工作流
 
-![](F:\Markdown\Git\images\QQ图片20190331185409.png)
+![](https://github.com/xuxueli982/Learning-notes/blob/master/Git/images/QQ%E5%9B%BE%E7%89%8720190331185409.png)
 
 第一天产品经理需求完成bash_demo
 
