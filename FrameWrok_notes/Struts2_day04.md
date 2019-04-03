@@ -100,3 +100,85 @@
 
 ## 自定义拦截器
 
+1. Struts2里面有许多拦截器，封装了Struts2的功能，但是在实际开发的过程中，Struts2里面的拦截器没有我们需要的功能，这时就要自己实现拦截器功能。
+
+2. 拦截器的结构
+
+   - 通过查看源代码看拦截器结构
+
+     1. 继承类
+
+        ![1554268020925](F:\MarkDownphotos\1554268020925.png)
+
+        ![1554268124015](F:\MarkDownphotos\1554268124015.png)接口中有三个方法：
+
+        ![1554268314472](F:\MarkDownphotos\1554268314472.png)：初始化操作
+
+        ![1554268291583](F:\MarkDownphotos\1554268291583.png)：销毁操作
+
+        ![1554268251435](F:\MarkDownphotos\1554268251435.png)：拦截器逻辑的操作
+
+   - 开发中建议使用另一种方式
+
+     1. 创建类，继承MethodFilterInterceptor类实现
+     2. 可以针对action中的某个方法不进行拦截处理
+
+   - 关联自定义拦截器和action
+
+     不是在action中调用拦截器的方法，而是通过配置文件方式让两者之间建立联系。
+
+## Struts2标签库
+
+1. Struts2标签只能用在jsp页面中
+
+2. s:property：和ognl表达式一起获取值栈中的数据。
+
+3. s:iterator：获取值栈list集合数据，遍历list集合
+4. s:debug：查看值栈的结构和数据
+
+## Struts2表单标签（会用）
+
+```Java 
+1. html表单标签
+	1）form：action、method、enctype
+	2)输入项
+	- 大部分在input里面封装 type=“值”
+	- text：普通输入项
+	- password：密码输入项
+	- radio：单选输入项
+	- checkout：复选输入项
+	- file：文件上传项
+	- hidden：隐藏项
+	- button：普通按钮
+	- submit：提交按钮
+	- image：图片提交
+	- reset：重置
+	- select：下拉输入项
+	- textarea：文本域
+2. Struts2的标签对应HTML标签中的大多数
+<!--普通输入项-->
+	<s:textfield name ="" label=""></s:textfield>
+	<s:password name="" label=""></s:password>
+<!--标签选择项-->
+    <!--单选框-->
+    <s:radio list="{'',''}" name="" label=""></s:radio>
+	<s:radio list="#{'':'','':''}" name="" label=""></s:radio>
+	<!--复选框-->
+	<s:checkboxlist list="{'','',''}" name="" label=""></s:checkboxlist>
+	<!--下拉列表框-->
+	<s:select list="{'','','','',''}" name="" label=""></s:select>
+<!--其他标签元素-->
+    <!--文件上传标签-->
+    <s:file name="" label=""></s:file>
+    <!--隐藏标签-->
+	<s:hidden name="" value=""></s:hidden>
+	<!--文本域-->
+	<s:textarea rows="" cols="" name="" label=""></s:textarea>
+	<s:reset value="重置"></s:reset>
+	<s:submit value="提交"></s:submit>
+```
+
+
+
+
+
