@@ -30,12 +30,12 @@
 
    - 画图分析
 
-   ![1554214661060](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/Aop%E6%80%9D%E6%83%B3.png)
+   ![1554214661060](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/1554212489504.png)
 
    第二个 责任链模式
 
-   - 在java中后很多设计模式，责任链模式是其中的一种
-   - 责任链模式和过滤连很相似
+   - 在java中有很多设计模式，责任链模式是其中的一种
+   - 责任链模式和过滤链很相似
 
    责任链模式：
 
