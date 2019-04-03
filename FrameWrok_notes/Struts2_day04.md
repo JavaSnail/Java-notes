@@ -63,7 +63,7 @@
 
    - 画图分析
 
-   ![拦截器实现原理](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/%E6%8B%A6%E6%88%AA%E5%99%A8%E7%9A%84%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B.png)
+   ![拦截器实现原理](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/Aop%E6%80%9D%E6%83%B3.png)
 
 3. 查看源代码
 
