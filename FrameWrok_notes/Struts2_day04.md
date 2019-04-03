@@ -9,14 +9,14 @@
 2. Struts2里面封装了很多的功能，有很多拦截器，不是每次这些拦截器都执行，每次执行默认拦截器
 3. Struts2里面默认拦截器的位置
 
-![1554212489504](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/1554212489504.png)
+![拦截器的位置](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/1554212489504.png)
 
-![1554212533695](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/1554212533695.png)
+![拦截器的位置](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/1554212533695.png)
 
-![1554212696021](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/1554212696021.png)
+![拦截器的位置](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/1554212696021.png)
 
 4. 拦截器在什么时候执行？
-   - 在action对象创建之后，action方法执行之前。
+   -  <font color=orange>在action对象创建之后，action方法执行之前。</font>
 
 ## 拦截器底层原理
 
@@ -30,7 +30,7 @@
 
    - 画图分析
 
-   ![1554214661060](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/1554212489504.png)
+   ![拦截器底层实现原理](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/1554212489504.png)
 
    第二个 责任链模式
 
@@ -47,7 +47,7 @@
 
    ​	一个请求可以有多个过滤器进行过滤，每个过滤器只有做放行才能到下一个过滤器。
 
-   ![1554215203465](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/1554215203465.png)
+   ![过滤器原理](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/1554215203465.png)
 
 2. aop思想和责任链模式是如何应用到拦截器里面？
 
@@ -55,7 +55,7 @@
 
      1. 在action对象创建之后，action方法执行之前。
 
-     2. 在action方法执行之前执行默认的拦截器，执行过程中使用aop思想，在action没有直接调用拦截器的方法，使用配置文件的方式进行操作。
+     2. 在action方法执行之前执行默认的拦截器，执行过程中使用aop思想，在action中没有直接调用拦截器的方法，而是使用配置文件的方式进行操作。
 
      3. 执行拦截器时，会有很多个拦截器执行，这时用到了责任链设计模式的思想
 
@@ -63,31 +63,31 @@
 
    - 画图分析
 
-   ![](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/%E6%8B%A6%E6%88%AA%E5%99%A8%E7%9A%84%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B.png)
+   ![拦截器实现原理](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/%E6%8B%A6%E6%88%AA%E5%99%A8%E7%9A%84%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B.png)
 
 3. 查看源代码
 
-   - 执行action
+   - 执行action类创建对象调用init方法
 
-     ![](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/1554219043772.png)
+     ![启动加载配置文件](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/1554219043772.png)
 
    - 创建action对象，使用动态代理的方式
 
-     ![1554219401005](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/1554219401005.png)
+     ![创建action对象](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/1554219401005.png)
 
      > 代理对象：不是真正的对象，但可以和对象所能执行的相同功能。
 
    - 执行action的方法
 
-     ![1554219591228](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/1554219591228.png)
+     ![执行action中的方法](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/1554219591228.png)
 
    - 执行多个拦截器，遍历执行
 
-     ![1554220271875](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/1554220271875.png)
+     ![拦截器执行过程](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/1554220271875.png)
 
      类似放行的操作
 
-     ![1554220380515](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/1554220380515.png)
+     ![拦截器执行过程](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/1554220380515.png)
 
 ## 重要概念
 
@@ -108,15 +108,15 @@
 
      1. 继承类
 
-        ![1554268020925](F:\MarkDownphotos\1554268020925.png)
+        ![1554268020925](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/%E6%8B%A6%E6%88%AA%E5%99%A8%E7%BB%A7%E6%89%BF%E7%9A%84%E7%B1%BB.png)
 
-        ![1554268124015](F:\MarkDownphotos\1554268124015.png)接口中有三个方法：
+        ![1554268124015](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/%E6%8B%A6%E6%88%AA%E5%99%A8%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%8E%A5%E5%8F%A3.png)接口中有三个方法：
 
-        ![1554268314472](F:\MarkDownphotos\1554268314472.png)：初始化操作
+        ![1554268314472](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/%E6%8B%A6%E6%88%AA%E5%99%A8%E5%88%9D%E5%A7%8B%E5%8C%96.png)：初始化操作
 
-        ![1554268291583](F:\MarkDownphotos\1554268291583.png)：销毁操作
+        ![1554268291583](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/%E6%8B%A6%E6%88%AA%E5%99%A8%E7%9A%84%E9%94%80%E6%AF%81.png)：销毁操作
 
-        ![1554268251435](F:\MarkDownphotos\1554268251435.png)：拦截器逻辑的操作
+        ![1554268251435](https://github.com/xuxueli982/Learning-notes/blob/master/FrameWrok_notes/Struts2_day04.assets/%E6%8B%A6%E6%88%AA%E5%99%A8%E6%89%A7%E8%A1%8C%E7%9A%84%E9%80%BB%E8%BE%91.png)：拦截器逻辑的操作
 
    - 开发中建议使用另一种方式
 
