@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-# 学习笔记
-
-## Git
+# Learning_Notes
 
 ## FrameWork
 
@@ -9,4 +6,4 @@
 
 ### Hibernate
 
-## Learning_Notes
+## 
