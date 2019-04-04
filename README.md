@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 学习笔记
 
 ## Git
@@ -7,3 +8,5 @@
 ### Struts2
 
 ### Hibernate
+
+## Learning_Notes
