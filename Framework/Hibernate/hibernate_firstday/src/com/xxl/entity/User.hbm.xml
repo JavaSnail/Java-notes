@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    <hibernate-mapping>
+    <!--1. 配置实体类和表的映射
+    	class标签
+    	name属性：实体类的全路径
+    	table属性：数据库表的名字
+     -->
+    	<class name="com.xxl.entity.User" table="t_user">
+    	<!-- 2.配置实体类的id和表的id对应
+    		id标签：
+    		name：实体类中ID属性
+    		column：数据库表中id字段名称（建议：字段名和实体类id同名）
+    	 -->
+    		<id name="uid" column="uid">
+    			<!-- 生成数据库表id增长策略
+    				native :生成表id值为自动增长。
+    			 -->
+    			<generator class="native"></generator>
+    		</id>
+    		<!-- 配置其他属性和表的字段对应 
+    			name属性：实体类的属性名
+    			column属性：表的字段名
+    		-->
+    		<property name="username" column="username"></property>	
+    		<property name="password" column="password"></property>
+    		<property name="address" column="address"></property>
+    	</class>
+    </hibernate-mapping>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<!-- 第一部分：配置数据库信息(必须的) -->
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql:///hibernateday01?characterEncoding=utf-8</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password"></property>
+		<!-- 第二部分：配置hibernate信息(可选的) -->
+		<!-- 输出底层SQL语句 -->
+		<property name="hibernate.show_sql">true</property>
+		<!-- 输出底层SQL语句格式 -->
+		<property name="hibernate.format_sql">true</property>
+		<!-- hibernate自动创建表需要的配置
+			update:有表更新，无表建表
+		 -->
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		<!-- 配置数据库方言
+			mysql实现分页关键字limit，只能用在mysql
+			在Oracle数据库，实现分页rownum
+			让hibernate框架识别不同数据库中特有的关键字
+		 -->
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<!-- 第三部分：把映射文件放到核心配置文件中(必须的) -->
+		<mapping resource="com/xxl/entity/User.hbm.xml"/>
+	</session-factory>
+</hibernate-configuration>
