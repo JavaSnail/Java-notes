@@ -301,7 +301,7 @@
 
       ![1554383781183](assets/1554383781183.png)
 
-### Session（重点）
+### Session<font color=red>（重点）</font>
 
 1. session类似于jdbc中的connection
 2. 调用session里面的不同方法实现crud操作
