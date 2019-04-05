@@ -24,15 +24,15 @@
 
 ### 什么是框架
 
-1. 少些代码，实现所需要的功能。
+1. 减少代码量，通过配置实现功能。
 
-### 什么是hibernate框架（重点）
+### 什么是hibernate框架<font color=red>（重点）</font>
 
 1. 应用在javaEE三层结构中的dao层。
 
 2. hibernate在dao层代替了crud操作，底层实现过程封装了jdbc。不用写复杂的jdbc代码，不需要写sql语句。
 
-3. hibernate开源的轻量级的框架
+3. hibernate是开源的轻量级的框架
 
    > 轻量级：直接使用，不需要依赖其他的框架
 
@@ -52,7 +52,7 @@
 
 2. 在web阶段Javabean称为实体类。
 
-3. orm：object relation mapping，对象关系映射。
+3. orm全称：object relation mapping，对象关系映射。
 
    - 文字描述
 
@@ -98,7 +98,7 @@
 
    ![1554362736974](assets/1554362736974.png)
 
-   1. 使用hibernate时，不需要自己建立表
+   >  使用hibernate时，不需要自己建立表
 
 3. 第三步：配置实体类和数据库表一一对应关系（映射关系）
 
@@ -108,7 +108,7 @@
 
         映射配置文件名称和位置没有固定位置要求
 
-        建议：在实体类所在的包中创建，名称为：hbm.xml
+        >  建议：在实体类所在的包中创建，名称为：hbm.xml
 
       -  见到xml文件，引入xml约束。
 
@@ -128,7 +128,7 @@
           	table属性：数据库表的名字
            -->
           	<class name="com.xxl.entity.User" table="t_user">
-          	<!-- 2.配置实体类的id和表的id对应
+          	<!-- 2.配置实体类的id和表的主键id对应
           		id标签：
           		name：实体类中ID属性
           		column：数据库表中id字段名称（建议：字段名和实体类id同名）
@@ -139,7 +139,7 @@
           			 -->
           			<generator class="native"></generator>
           		</id>
-          		<!-- 配置其他属性和表的字段对应 
+          		<!--3. 配置其他属性和表的字段对应 
           			name属性：实体类的属性名
           			column属性：表的字段名
           		-->
@@ -193,6 +193,41 @@
 
 7. 第七步：关闭资源
 
+   ```java 
+   @Test
+   	public void testAdd() {
+   //		1. 第一步：加载核心配置文件
+   		//在src下找到名称为hibernate.cfg.xml
+   		//在hibernate里面封装对象
+   		Configuration cfg=new Configuration();
+   		cfg.configure();		
+   //		2. 第二步：创建SessionFactory对象
+   		//读取hibernate核心配置，创建sessionfactory
+   		//该过程根据配置，在数据库中创建表。
+   		SessionFactory sessionFactory = cfg.buildSessionFactory();		
+   //		3. 第三步：使用SessionFactory创建session对象
+   		Session session = sessionFactory.openSession();
+   //		4. 第四步：开启事务
+   		Transaction beginTransaction = session.beginTransaction();
+   //		5. 第五步：写具体逻辑crud
+   		//添加功能
+   		User user=new User();
+   		user.setUsername("杨旭");
+   		user.setPassword("123");
+   		user.setAddress("甘肃天水");
+   		//调用session方法添加
+   		session.save(user);
+   //		6. 第六步：提交事务
+   		beginTransaction.commit();
+   //		beginTransaction.rollback();
+   //		7. 第七步：关闭资源
+   		session.close();
+   		sessionFactory.close();		
+   	}
+   ```
+
+   
+
 8. 看到效果：
 
    - 是否创建了表
@@ -213,7 +248,7 @@
    1. class的name属性值写实体类的全路径。
    2. id和property标签中的name属性值写对应实体类的成员变量名。
 
-3. id标签和property标签，column属性可以省略的。
+3. id标签和property标签中的column属性可以省略的。
    1. 不写默认取name属性值。
 
 4. property标签type属性，设置生成表字段的类型，自动对应类型。
@@ -225,9 +260,9 @@
 ![1554382263054](assets/1554382263054.png)
 
 2. 配置三部分要求
-   1. 数据库部分必须
+   1. 数据库部分<font color=red>必须</font>
    2. hibernate部分可选
-   3. 映射文件必须
+   3. 映射文件<font color=red>必须</font>
 3. 核心配置文件固定
    1. 名称固定：hibernate.cfg.xml
    2. 位置固定：src下。
@@ -240,17 +275,19 @@
 
    ![1554382570702](assets/1554382570702.png)
 
-   - 在src下找到hibernate.cfg.xml配置文件，创建对象，把配置文件放到对象里面（加载核心配置文件）
+   - 创建Configuration对象，调用其configure()方法，自动在src目录下加载hibernate.cfg.xml配置文件。
 
-### SessionFactory（重点）
+### SessionFactory<font color=red>（重点）</font>
 
 1. 使用configuration对象创建sessionFactory对象
 
    1. 创建sessionFactory过程中执行的操作
 
-      1. 根据核心配置文件中，有数据库配置、映射文件，到数据库中根据映射关系，自动创建表。
+      1. 根据核心配置文件中的数据库配置、映射文件，到数据库中根据映射关系，自动创建表。
 
-         ![1554383162224](assets/1554383162224.png)
+         ![1554383162224](assets/1554383162224.png)、
+
+         > 要自动创建表的必须配置
 
 2. 创建sessionFactory过程中，非常消耗资源
 
@@ -260,7 +297,7 @@
 
    1. 编写工具类，写静态代码块实现
 
-      > 静态代码块只在类被创建是加载一次。
+      > 静态代码块只在类被第一次创建时加载，以后不会再加载。
 
       ![1554383781183](assets/1554383781183.png)
 
