@@ -318,10 +318,10 @@
    2. 调用对象的方法。
 
    ```java
-   //创建Criteria对象
-   			Criteria createCriteria = session.createCriteria(User.class);
-   			//调用Criteria对象的方法
-   			List<User> list = createCriteria.list();
+   	//创建Criteria对象
+   	Criteria createCriteria = session.createCriteria(User.class);
+   	//调用Criteria对象的方法
+   	List<User> list = createCriteria.list();
    ```
 
    
@@ -337,14 +337,14 @@
    2. 调用对象的方法
 
       ```java
-      //创建SQLQuery对象
-      			SQLQuery createSQLQuery = session.createSQLQuery("select * from t_user");
-      			//调用SQLQuery对象的方法
-      			//返回的list集合，默认里面每部分是数组
-      			List<Object[]> list = createSQLQuery.list();
-      			for (Object[] objects : list) {
-      				System.out.println(Arrays.toString(objects));
-      			}
+      	//创建SQLQuery对象
+      	SQLQuery createSQLQuery = session.createSQLQuery("select * from t_user");
+      	//调用SQLQuery对象的方法
+      	//返回的list集合，默认里面每部分是数组
+      	List<Object[]> list = createSQLQuery.list();
+      	for (Object[] objects : list) {
+      		System.out.println(Arrays.toString(objects));
+      	}
       ```
 
       - 返回的list集合每部分是一个数组。
@@ -354,12 +354,12 @@
       - 使返回的list集合中的每部分是一个对象。
 
         ```java
-        //创建SQLQuery对象
-        			SQLQuery createSQLQuery = session.createSQLQuery("select * from t_user");
-        			//调用SQLQuery对象的方法
-        			//返回的list集合，每部分是一个对象
-        			createSQLQuery.addEntity(User.class);
-        			List<User> list = createSQLQuery.list();
+        	//创建SQLQuery对象
+        	SQLQuery createSQLQuery = session.createSQLQuery("select * from t_user");
+        	//调用SQLQuery对象的方法
+        	//返回的list集合，每部分是一个对象
+        	createSQLQuery.addEntity(User.class);
+        	List<User> list = createSQLQuery.list();
         ```
 
         ![1554563022450](assets/1554563022450.png)
