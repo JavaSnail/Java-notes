@@ -86,7 +86,7 @@
 
       ![1554520859913](assets/1554520859913.png)
 
-      > - 也可以调用session的save方法就行修改。
+      > - 也可以调用session的save方法进行修改。
       >
       > - 如果设置对象的ID属性与表中已有的ID字段值相同，调用session的sava方法时，不能执行类似修改的逻辑，而是会添加一个新的数据。（不建议）
       >
@@ -179,7 +179,7 @@
 #### 4.4 一级缓存执行过程
 
 1. 文字描述
-   - 首先在一级缓存中查找数据，如果没有查询数据库，返回对象（持久态对象）；同时将查询到的对象放入一级缓存。若一级缓存中有，直接返回对象。
+   - 首先在一级缓存中查找数据，如果没有，查询数据库并返回对象（持久态对象）；同时将查询到的对象放入一级缓存。若一级缓存中有，直接返回对象。
    - 以后执行上述相同过程。
 
 #### 4.5 Hibernate一级缓存特性
@@ -202,13 +202,13 @@
 
 2. 事务特性
 
+   > 原子性、一致性、隔离性、持久性。
+
 3. 不考虑隔离性产生的问题
 
    - 脏读
-
-   - 幻读
-
    - 不可重复度
+   - 虚读、幻读
 
 4. 设置事务隔离级别
 
@@ -261,14 +261,14 @@
    - 在hibernate核心配置文件中配置
 
      ```java
-     <!-- 绑定线程session的配置 -->
-     		<property name="hibernate.current_session_context_class">thread</property>
+     	<!-- 与本地线程绑定的session的配置 -->
+     	<property name="hibernate.current_session_context_class">thread</property>
      ```
 
    - 调用sessionFactory中的方法
 
      ```java
-     //提供返回与本地线程绑定的session方法
+     	//提供返回与本地线程绑定的session方法
      	public static Session getSession() {
      		return sessionFactory.getCurrentSession();
      	}
@@ -319,9 +319,9 @@
 
    ```java
    	//创建Criteria对象
-   	Criteria createCriteria = session.createCriteria(User.class);
+   	Criteria criteria = session.createCriteria(User.class);
    	//调用Criteria对象的方法
-   	List<User> list = createCriteria.list();
+   	List<User> list = criteria.list();
    ```
 
    
@@ -355,11 +355,11 @@
 
         ```java
         	//创建SQLQuery对象
-        	SQLQuery createSQLQuery = session.createSQLQuery("select * from t_user");
+        	SQLQuery sqlQuery = session.createSQLQuery("select * from t_user");
         	//调用SQLQuery对象的方法
         	//返回的list集合，每部分是一个对象
-        	createSQLQuery.addEntity(User.class);
-        	List<User> list = createSQLQuery.list();
+        	sqlQuery.addEntity(User.class);
+        	List<User> list = sqlQuery.list();
         ```
 
         ![1554563022450](assets/1554563022450.png)
