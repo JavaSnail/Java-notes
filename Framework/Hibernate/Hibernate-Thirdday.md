@@ -259,5 +259,188 @@
 
          ![1554784152015](assets/1554784152015.png)
 
-#### 2.2.3 一对多的级联修改
+#### 2.2.3 一对多的修改（inverse属性）
+
+1. 让Jack所属的客户属于baidu
+
+   ```java
+   //业务逻辑书写
+   			//1.根据id查询jack,根据id查客户
+   			Customer customer = session.get(Customer.class, 6);
+   			LinkedMan linkedMan = session.get(LinkedMan.class, 6);
+   			//2.设置持久态对象的值
+   			//将联系人添加给客户
+   			customer.getSetLinkedMan().add(linkedMan);
+   			//客户添加给联系人中
+   			linkedMan.setCustomer(customer);
+   ```
+
+2. inverse属性
+
+   ![1554794234492](assets/1554794234492.png)
+
+   1. 因为hibernate双向维护外键，在客户和联系人里面都需要维护外键，修改客户时修改一次，修改联系人时又修改一次。造成性能不高。
+
+   2. 解决方式：让其中一方放弃外键维护。
+
+      - 一对多里面，让其中一的一方放弃外键维护
+
+        >  例：一个国家有一个总统，国家有很多人，总统不可能认识国家中的所有人，但是国家中的所有人都认识总统。
+
+   3. 具体实现
+
+      1. 在放弃关系维护的一方的映射配置文件中配置，在set标签的inverse属性设置。
+
+         ![1554794787977](assets/1554794787977.png)
+
+> <font color=red>如果是在映射配置文件中设置了级联修改属性，则该过程不会调用update操作。</font>
+
+### 三、Hibernate多对多操作
+
+### 3.1 多对多映射配置
+
+以用户和角色为例说明
+
+1. 第一步：创建实体类，用户角色
+
+2. 第二步：两个实体类之间互相表示
+
+   1. 一个用户对应多个角色，使用set集合
+
+      ![1554795642004](assets/1554795642004.png)
+
+   2. 一个角色对应多个用色，使用set集合
+
+      ![1554795721064](assets/1554795721064.png)
+
+3. 第三步：配置映射关系
+
+   1. 基本配置
+
+   2. 配置多对多关系。
+
+      - 在用户中表示所有角色，set标签
+
+      ![1554798582275](assets/1554798582275.png)
+
+      
+
+      - 在角色中表示所有用户，set标签
+
+      ![1554799071499](assets/1554799071499.png)
+
+      ![1554799266768](assets/1554799266768.png)
+
+4. 第四步：在核心配置文件中引入映射文件
+
+5. 测试
+
+![1554799944774](assets/1554799944774.png)
+
+### 3.2 多对多级联保存
+
+1. 根据用户保存角色
+
+   1. 第一步：在用户的配置文件中的set标签中增加cascade属性，将其值配置为save-update.
+
+   ![1554800748489](assets/1554800748489.png)
+
+   1. 第二步：编写代码
+
+      1. 创建用户和角色对象，把角色放到用户中，最终保存用户就可以了。
+
+   2. 代码：
+
+      ```java
+      
+      	@Test
+      	public void testAdd() {
+      		SessionFactory sessionFactory=null;
+      		Session session=null;
+      		Transaction tx=null;
+      		try {
+      			//创建sessionFactory对象
+      			sessionFactory = HibernateUtils.getSessionFactory();
+      			//创建session对象。
+      			session= sessionFactory.openSession();
+      			//创建事务对象。
+      			tx = session.beginTransaction();
+      			//1.创建用户角色实体类对象
+      			User user = new User();
+      			user.setUser_name("老张");
+      			user.setUser_password("520");
+      			
+      			User user2 = new User();
+      			user2.setUser_name("老刘");
+      			user2.setUser_password("123");
+      			
+      			Role role = new Role();
+      			role.setRole_name("CEO");
+      			role.setRole_memo("董事长");
+      			
+      			Role role2 = new Role();
+      			role2.setRole_name("CFO");
+      			role2.setRole_memo("首席运营官");
+      			
+      			Role role3 = new Role();
+      			role3.setRole_name("CTO");
+      			role3.setRole_memo("首席财务官");
+      			//为用户添加角色
+      			user.getSetRole().add(role);
+      			user.getSetRole().add(role2);
+      			
+      			user2.getSetRole().add(role2);
+      			user2.getSetRole().add(role3);
+      			//保存用户
+      			session.save(user);
+      			session.save(user2);
+      			
+      			//提交事务
+      			tx.commit();
+      			} catch (Exception e) {
+      			tx.rollback();
+      			}finally {
+      				sessionFactory.close();
+      			}
+      	}
+      ```
+
+      
+
+   3. 效果
+
+   ![1554801527194](assets/1554801527194.png)
+
+### 3.3 多对多级联删除(了解)
+
+1. 第一步：配置映射文件
+
+   ![1554802180667](assets/1554802180667.png)
+
+2. 第二步：编写代码
+
+   ![1554802206654](assets/1554802206654.png)
+
+### 3.4 维护第三张表关系
+
+1. 用户和角色是多对多的关系，维护关系通过第三张表
+
+   - 为某个用户添加某种角色
+
+     - 第一步：根据id查询用户和角色
+     - 第二步：把角色放到用户里面
+       - 把角色对象放到用户的set集合中。
+     - 代码展示
+
+     ![1554802977192](assets/1554802977192.png)
+
+   - 删除用户的角色
+
+     - 第一步：根据id查询用户和角色
+     - 第二步：从set集合中将用户的角色移除。
+     - 代码展示：
+
+     ![1554803407019](assets/1554803407019.png)
+
+
 
