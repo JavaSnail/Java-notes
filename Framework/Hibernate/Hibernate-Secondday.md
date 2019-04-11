@@ -165,9 +165,9 @@
 #### 4.3 验证一级缓存存在
 
 1. 验证方式
-   1. 首先根据uid=1查询，返回对象。
+   1. 首先根据uid=6查询，返回对象。
 
-   2. 再次根据uid=1查询，返回对象。
+   2. 再次根据uid=6查询，返回对象。
 
    ![1554553483821](assets/1554553483821.png)
 
@@ -230,7 +230,8 @@
    			 session= sessionFactory.openSession();
    			//开启事务
    			tx = session.beginTransaction();
-   			User user = new User();			user.setUsername("老王");
+   			User user = new User();			
+               user.setUsername("老王");
    			user.setPassword("250");
    			user.setAddress("中国");
    			//添加数据

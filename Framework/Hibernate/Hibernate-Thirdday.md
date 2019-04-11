@@ -171,9 +171,10 @@
       在客户映射文件中的set标签中配置。
 
       ![1554782798876](assets/1554782798876.png)
-2. 第二步：创建客户联系人对象，只需将联系人放入客户中，最终保存客户即可。
 
-   > 注意save-update中的<font color=red>“-“，不是”_"</font>
+      > 注意save-update的写法。
+
+2. 第二步：创建客户联系人对象，只需将联系人放入客户中，最终保存客户即可。
 
    ```java
    @Test
@@ -264,15 +265,15 @@
 1. 让Jack所属的客户属于baidu
 
    ```java
-   //业务逻辑书写
-   			//1.根据id查询jack,根据id查客户
-   			Customer customer = session.get(Customer.class, 6);
-   			LinkedMan linkedMan = session.get(LinkedMan.class, 6);
-   			//2.设置持久态对象的值
-   			//将联系人添加给客户
-   			customer.getSetLinkedMan().add(linkedMan);
-   			//客户添加给联系人中
-   			linkedMan.setCustomer(customer);
+   	//业务逻辑书写
+   	//1.根据id查询jack,根据id查客户
+   	Customer customer = session.get(Customer.class, 6);
+   	LinkedMan linkedMan = session.get(LinkedMan.class, 6);
+   	//2.设置持久态对象的值
+   	//将联系人添加给客户
+   	customer.getSetLinkedMan().add(linkedMan);
+   	//客户添加给联系人中
+   	linkedMan.setCustomer(customer);
    ```
 
 2. inverse属性
@@ -295,7 +296,7 @@
 
 > <font color=red>如果是在映射配置文件中设置了级联修改属性，则该过程不会调用update操作。</font>
 
-### 三、Hibernate多对多操作
+## 三、Hibernate多对多操作
 
 ### 3.1 多对多映射配置
 
