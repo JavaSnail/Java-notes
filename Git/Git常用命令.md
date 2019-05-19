@@ -12,27 +12,27 @@ Git 的配置,分为如下3个级别。
 
 覆盖顺序为:(3)>(2)>(1).
 
-1)修改提交者的信息。
+### 1)修改提交者的信息。
 
 git config--global user.name [username]
 
 git config--global user.email [email]
 
-2)修改Git的message 编辑器为 Vim。
+### 2)修改Git的message 编辑器为 Vim。
 
 git config--global core.editor vim
 
-3)在git命令中开启颜色显示。
+### 3)在git命令中开启颜色显示。
 
 git config--global color.ui true
 
-4)区分文件名大小写。
+### 4)区分文件名大小写。
 
 编辑每一个Git项目下的.git/config文件,设置 core.ignorecase为false,或者
 
 git mv oldFileName newFileName
 
-5)兼容不同平台的换行符。
+### 5)兼容不同平台的换行符。
 
 Windows:git config --global core.autocrlf true
 
@@ -40,15 +40,15 @@ Mac: git contig --global core.autocrlf input
 
 可以关闭关于换行符的提示:git config --global core.safecrLtfalse。
 
-6)如果使用HTTP clone 遇到提交大小限制,请使用以下命令提高限制值。
+### 6)如果使用HTTP clone 遇到提交大小限制,请使用以下命令提高限制值。
 
 git config --global http.postBuffer 524288000(bytes)
 
-7)此外,也可以使用以下命令进入编辑页面做相应修改。
+### 7)此外,也可以使用以下命令进入编辑页面做相应修改。
 
 git config -e --global
 
-8)配置Git常用命令的alias.
+### 8)配置Git常用命令的alias.
 
 sudo git config --system alias.st status #git st
 
@@ -60,15 +60,15 @@ sudo git config--system alias.br branch #git br
 
 这里-system 参数将修改/etc/gitconfig文件,是全局配置,只需要admin做一次即可。
 
-9)进入工作根目录,运行git config -e,会修改工作区的-git/config文件。
+### 9)进入工作根目录,运行git config -e,会修改工作区的-git/config文件。
 
 需要注意:Git config文件的覆盖顺序是(3)>(1)>(2).
 
-10)显示配置列表。
+### 10)显示配置列表。
 
 git config --list
 
-11)配置密钥。
+### 11)配置密钥。
 
 ssh-keygen-t rsa-C xuueli982@163.com #生成密钥,把公钥复制到Git服务器上
 
@@ -88,7 +88,7 @@ ssh-add -d public_key_path #将对应的私钥从ssh-agent删除
 
 件来创建新的Git仓库；第二种是从已有的Git 仓库克隆出一个新的镜像仓库来
 
-1)在工作目录中初始化新仓库。
+### 1)在工作目录中初始化新仓库。
 
 要对现有的某个项目开始用Git管理,只需到此项目所在的目录,执行
 
@@ -96,7 +96,7 @@ git init #在当前目录新建一个Git代码库
 
 git init [projectName]#新建一个目录并初始化为Git代码库
 
-2)从现有仓库克隆。
+### 2)从现有仓库克隆。
 
 git clone git://github.com/superhj1987/test.git
 
@@ -179,7 +179,7 @@ git commit --amend -m [message] #使用新commit替代上一次提交,如果代�
 
 git commit -a #跳过git add步骤直接commit
 
-### 8)移除文件。
+### 8)  移除文件。
 
  要从Git中移除某个文件(包括暂存区域和工作目录)，就必须从已追踪文件清单中移除(确切地说,是从暂存区域移除)，然后提交。
 
@@ -189,7 +189,7 @@ git commit -a #跳过git add步骤直接commit
 
  另外一种情况是,我们想把文件从Git 仓库中删除(即从暂存区域移除),但仍然希望保留在当前工作目录中。换句话说,仅仅从追踪清单中删除。比如一些编译文件不小心纳入仓库后,要移除追踪但不删除文件,以便稍后在.gitignore 文件中补上 用 -cached 选项 即可:git rm-cached[file].后面可以列出文件或者目录的名字,也可以使用glob模式,例如 git rm log/*.log. 
 
-###  9)移动文件。
+###  9)  移动文件。
 
  要在Git 中对文件改名,可以运行如下命令:
 
@@ -203,7 +203,7 @@ mv README.txt README
 
 git add README 
 
-### 10)回滚文件。
+### 10)  回滚文件。
 
 git branch backup #先备份到一个新分支
 
@@ -215,23 +215,23 @@ git reset --hard[版本号]#回滚
 
 远程仓库是指托管在网络上的项目仓库。 
 
-1) 查看当前的远程仓库。
+### 1)  查看当前的远程仓库。
 
 要查看当前配置有哪些远程仓库,可以用git remote命令,它会列出每个远程仓库的简短名， 在克隆完成后,至少可以看到一个名为origin 的远程仓库,也可以使用git remote- v显示对应的克隆地址。
 
- 2)添加远程仓库。
+###  2)  添加远程仓库。
 
  要添加一个新的远程仓库,可以指定一个简单的名字,以便将来引用:
 
  git remote add`[shortname][url] `这里的url也可以是一个本地Git项目文件夹,如git remote add local_repository/test
 
-3)从远程同步信息。 
+### 3)  从远程同步信息。 
 
 git fetch [remote] #下载仓库的所有变动 
 
 git pull `[remote][branch]`#取回远程仓库的变化并合并本地分支
 
- 4)推送数据到远程仓库。
+###  4)  推送数据到远程仓库。
 
  项目进行到一个阶段,可以将本地仓库中的数据推送到远程仓库。 命令如下: 
 
@@ -249,15 +249,15 @@ git push `[remote-name][branch-name] `
 
 git push [remote] --all 
 
-5)查看远程仓库信息。 
+### 5)  查看远程仓库信息。 
 
 我们可以通过命令git remote show [remote-name]查看某个远程仓库的详细信息。
 
- 6)远程仓库的删除和重命名。 
+###  6)  远程仓库的删除和重命名。 
 
 用git remote rename命令修改某个远程仓库在本地的简短名称，使用git remote rm 命令删除远程仓库。
 
-7)检出远程仓库的某一分支。
+### 7)  检出远程仓库的某一分支。
 
  git checkout-b `[local.branch] [remote.branch]`
 
@@ -453,17 +453,17 @@ git cherry-pick [commit id]
 
 当你的工程的部分文件是另一个Git库时,可以使用submodule(现在subtree 已经替 代了submodule)
 
-1)添加。 
+### 1) 添加。 
 
 为当前工程添加 submodule,命令如下: 
 
 git submodule add 仓库地址路径 
 
-2)删除。
+### 2) 删除。
 
  首先,要在“gitmodules”文件中删除相应配置信息。然后,执行 git rm-cached命令将子模块所在的文件从Git中删除。
 
- 3)下载的工程带有submodule。
+###  3) 下载的工程带有submodule。
 
  当使用git clone下来的工程中带有submodule时,初始的时候,submodule的内容并不会自动下载,此时需要执行如下命令: 
 
@@ -471,19 +471,19 @@ git submodule update --init --recursive
 
 ## B.12 Subtree
 
- 1)第一次添加子目录,建立与Git项目的关联。
+###  1)  第一次添加子目录,建立与Git项目的关联。
 
  git remote add-f [子仓库名] [子仓库地址]	#-f是在添加远程仓库之后,立即执行fetch。
 
  git subtree add --prefix=[子目录名] [子仓库名] [分支] -squash	#-squash是把subtree的改动合并成一次commit,这样就不用拉取子项目完整的历史记录。-prefix之后的=等号也可以用空格。 
 
-2)从远程仓库更新子目录。
+### 2)  从远程仓库更新子目录。
 
  git fetch [远程仓库名] [分支] 
 
 git subtree pulls--prefix=[子目录名] [远程分支] [分支] --squash
 
-3)从子目录Push 到远程仓库(确认你有写权限)。
+### 3)  从子目录Push 到远程仓库(确认你有写权限)。
 
  git subtree push--prefix=[子目录名] [远程分支名] 分支 
 
