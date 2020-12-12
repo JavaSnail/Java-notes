@@ -1,0 +1,38 @@
+# 指定Eureka服务地址
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://root:root@localhost:8761/eureka/,http://root:root@localhost:8762/eureka/
+#指定服务的名称
+spring:
+  application:
+    name: SEARCH
+  # 连接RabbitMQ
+  rabbitmq:
+    host: 192.168.25.150
+    port: 5672
+    username: test
+    password: test
+    virtual-host: /
+  cloud:
+    stream:
+      bindings:
+        myMessage:
+          group: customer
+      #手动实现ACK
+      rabbit:
+        bindings:
+          myMessage:
+            consumer:
+              acknowledgeMode: MANUAL
+  sleuth:
+    sampler:
+      probability: 1     #代表百分之多少的sleuth信息需要输出到zipkin中
+    zipkin:
+      base-url: http://192.168.25.150:9411/   #指定zipkin的地址
+server:
+  port: 9090
+
+logging:
+  level:
+    org.springframework.web.servlet.DispatcherServlet: DEBUG

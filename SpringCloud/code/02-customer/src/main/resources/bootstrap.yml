@@ -1,0 +1,34 @@
+# 指定Eureka服务地址
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://root:root@localhost:8761/eureka/,http://root:root@localhost:8762/eureka/
+    registry-fetch-interval-seconds: 30 #每隔多久去更新一下本地的注册表缓存信息
+
+#指定服务的名称
+spring:
+  application:
+    name: CUSTOMER-${version}
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: CONFIG
+      profile: dev
+      label: master
+  sleuth:
+    sampler:
+      probability: 1     #代表百分之多少的sleuth信息需要输出到zipkin中
+  zipkin:
+    base-url: http://192.168.25.150:9411/   #指定zipkin的地址
+    sender:
+      type: rabbit
+version : v1
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+logging:
+  level:
+    org.springframework.web.servlet.DispatcherServlet: DEBUG
