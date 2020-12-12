@@ -1547,7 +1547,7 @@ public class CustomerController {
 > 1. CONFIG在Gitee修改之后，自动拉取最新的配置信息
 > 2. 其他模块需要更新的话，需要手动给CONFIG应用发送一个请求：`http://localhost:8090/actuator/bus-refresh`，不重启项目，即可获取最新的配置信息
 
-#### 9.4.5	实现自动刷新
+#### 9.4.4	实现自动刷新
 
 1、配置Gitee中的WebHooks
 
